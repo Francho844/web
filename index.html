@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Colegio Saint Thomas Valparaíso - Más de 40 años formando líderes con educación de calidad en Valparaíso, Chile. Educación integral, valores sólidos y metodologías innovadoras.">
+    <meta name="keywords" content="colegio, educación, Valparaíso, Chile, educación integral, formación académica, excelencia educativa">
+    <meta name="author" content="Colegio Excelencia">
+    <meta name="robots" content="index, follow">
+    <title>Colegio Saint Thomas Valparaíso - Educación de Calidad</title>
+    <link rel="icon" href="img/stc.ico" type="image/x-icon">
+    <style>
+        /* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colores principales */
+    --burdeos-principal: #611427;
+    --gris-medio: #969696;
+    --dorado-marron: #D6C49A;
+    --arena-calida: #D3BC8D;
+    --blanco: #ffffff;
+    --negro: #333333;
+    
+    /* Espaciado */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 4rem;
+    
+    /* Tipografía */
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 2.5rem;
+    --font-size-5xl: 3.5rem;
+    
+    /* Transiciones */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.6s ease;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.2);
+    --shadow-xl: 0 10px 25px rgba(0,0,0,0.3);
+    
+    /* Bordes */
+    --border-radius-sm: 4px;
+    --border-radius-md: 5px;
+    --border-radius-lg: 10px;
+    --border-radius-xl: 15px;
+    --border-radius-full: 50px;
+    --border-radius-circle: 50%;
+    
+    /* Z-index */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal: 1040;
+    --z-popover: 1050;
+    --z-tooltip: 1060;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--negro);
+    overflow-x: hidden;
+}
+
+/* Utilidades de accesibilidad */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Skip link para accesibilidad */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--burdeos-principal);
+    color: var(--blanco);
+    padding: var(--spacing-sm);
+    z-index: calc(var(--z-tooltip) + 1);
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    transition: top var(--transition-base);
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* Header y Navegación */
+header {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    backdrop-filter: blur(6px);
+    color: var(--blanco);
+    padding: var(--spacing-md) 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 9999;
+    box-shadow: none;
+    transition: background var(--transition-base), backdrop-filter var(--transition-base);
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.logo img {
+    display: block;
+    height: 50px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-lg);
+}
+
+.nav-links a {
+    color: var(--blanco);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    background: rgba(255,255,255,0.2);
+    transform: translate3d(0, -2px, 0);
+    outline: 2px solid var(--dorado-marron);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+}
+
+.menu-toggle:focus {
+    outline: 2px solid var(--dorado-marron);
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--blanco);
+    margin: 3px 0;
+    transition: var(--transition-base);
+    display: block;
+}
+
+/* Animación del menú hamburguesa */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Secciones principales */
+/*main {
+    margin-top: 80px;
+}*/
+
+section {
+    min-height: 100vh;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-content {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Inicio con Slider */
+#inicio {
+    background: linear-gradient(135deg, var(--burdeos-principal), var(--arena-calida));
+    color: var(--blanco);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+/* Slider Styles */
+.slider-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.slider-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 500%;
+    height: 100vh;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.slide {
+    width: 20%;
+    flex: 0 0 20%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Imágenes de ejemplo con gradientes */
+.slide:nth-child(1) {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 33%, rgba(0, 0, 0, 0) 100%),
+                url('img/foto1.jpg') center/cover no-repeat;
+}
+
+.slide:nth-child(2) {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 33%, rgba(0, 0, 0, 0) 100%), 
+                url('img/foto2.jpg') center/cover;
+}
+
+.slide:nth-child(3) {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 33%, rgba(0, 0, 0, 0) 100%),
+                url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&h=800&fit=crop') center/cover;
+}
+
+.slide:nth-child(4) {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 33%, rgba(0, 0, 0, 0) 100%),
+                url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=800&fit=crop') center/cover;
+}
+
+.slide:nth-child(5) {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 33%, rgba(0, 0, 0, 0) 100%),
+                url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=800&fit=crop') center/cover;
+}
+
+.slide-content {
+    text-align: center;
+    z-index: 2;
+    max-width: 800px;
+    padding: var(--spacing-lg);
+}
+
+.slide h2 {
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-md);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: slideInUp 1s ease;
+}
+
+.slide p {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    animation: slideInUp 1s ease 0.3s both;
+}
+
+.slide .cta-button {
+    background: var(--dorado-marron);
+    color: var(--blanco);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-decoration: none;
+    display: inline-block;
+    animation: slideInUp 1s ease 0.6s both;
+    text-shadow: none;
+    will-change: transform;
+}
+
+.slide .cta-button:hover,
+.slide .cta-button:focus {
+    transform: translate3d(0, -3px, 0);
+    box-shadow: var(--shadow-xl);
+    background: var(--arena-calida);
+    color: var(--negro);
+    outline: 2px solid var(--blanco);
+}
+
+/* Controles del Slider */
+.slider-nav {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: var(--z-dropdown);
+}
+
+.nav-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: var(--border-radius-circle);
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+    will-change: transform;
+}
+
+.nav-dot:hover,
+.nav-dot:focus {
+    background: rgba(255,255,255,0.8);
+    transform: scale(1.2);
+    outline: none;
+    border-color: var(--dorado-marron);
+}
+
+.nav-dot.active {
+    background: var(--dorado-marron);
+    transform: scale(1.3);
+}
+
+/* Flechas de navegación */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    color: var(--blanco);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--border-radius-circle);
+    font-size: var(--font-size-2xl);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    z-index: var(--z-dropdown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+}
+
+.slider-arrow:hover,
+.slider-arrow:focus {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-50%) scale(1.1);
+    outline: 2px solid var(--dorado-marron);
+}
+
+.slider-arrow.prev {
+    left: 30px;
+}
+
+.slider-arrow.next {
+    right: 30px;
+}
+
+/* Información de la diapositiva */
+.slide-info {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: rgba(0,0,0,0.3);
+    color: var(--blanco);
+    padding: var(--spacing-sm) 15px;
+    border-radius: 20px;
+    font-size: var(--font-size-sm);
+    backdrop-filter: blur(10px);
+}
+
+/* Sección Noticias */
+.seccion-noticias {
+    background: var(--blanco);
+    color: var(--negro);
+    padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.noticia-card {
+    background: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    will-change: transform;
+}
+
+.noticia-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.noticia-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.noticia-contenido {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.noticia-contenido h3 {
+    color: var(--burdeos-principal);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-xs);
+}
+
+.noticia-fecha {
+    font-size: var(--font-size-sm);
+    color: var(--gris-medio);
+}
+
+.noticia-contenido p {
+    font-size: var(--font-size-base);
+    flex-grow: 1;
+}
+
+.leer-mas {
+    align-self: flex-start;
+    background: var(--dorado-marron);
+    color: var(--blanco);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.leer-mas:hover {
+    background: var(--arena-calida);
+    color: var(--negro);
+    transform: translateY(-2px);
+}
+/* Historia */
+#historia {
+    background: linear-gradient(135deg, var(--blanco), #f8f9fa);
+}
+
+.historia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: var(--spacing-lg);
+}
+
+.historia-text {
+    text-align: left;
+}
+
+.historia-text h3 {
+    color: var(--burdeos-principal);
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.historia-text p {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+.historia-visual h3,
+.historia-visual p {
+ color: var(--dorado-marron); /* o #D6C49A */
+text-shadow:
+  -2px -2px 2px #000,
+   2px -2px 2px #000,
+  -2px  2px 2px #000,
+   2px  2px 2px #000;
+}
+.historia-carrusel {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+}
+
+.historia-slides {
+    display: flex;
+    width:100%;
+    height: 100%;
+    animation: historiaCarousel 15s infinite;
+}
+
+.historia-slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    transition: background 1s ease-in-out;
+}
+
+.historia-texto {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dorado-marron);
+    text-align: center;
+    text-shadow: 
+      -2px -2px 2px #000,
+       2px -2px 2px #000,
+      -2px  2px 2px #000,
+       2px  2px 2px #000;
+}
+
+@keyframes historiaCarousel {
+    0% { transform: translateX(0%); }
+    33.33% { transform: translateX(-100%); }
+    66.66% { transform: translateX(-200%); }
+    100% { transform: translateX(0%); }
+}
+.historia-carrusel::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255,255,255,0.1) 10px,
+    rgba(255,255,255,0.1) 20px
+  );
+  animation: move 20s linear infinite;
+  will-change: transform;
+  pointer-events: none; /* para no interferir con interacciones */
+  z-index: 1;           /* por debajo del texto, pero encima de las imágenes */
+}
+
+/* 2. Asegúrate de que tus slides queden por debajo */
+.historia-slides,
+.historia-slide {
+  position: relative;
+  z-index: 0;
+}
+
+/* 3. Define la animación (ya la tenías) */
+@keyframes move {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+/* Personal */
+#personal {
+    background: var(--gris-medio);
+    color: var(--blanco);
+}
+
+.personal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.personal-card {
+    width: 350px; 
+    flex-shrink: 0;
+    background: var(--blanco);
+    color: var(--negro);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-xl);
+    text-align: center;
+    transition: transform var(--transition-base);
+    box-shadow: var(--shadow-md);
+    will-change: transform;
+}
+
+.personal-card:hover,
+.personal-card:focus-within {
+    transform: translate3d(0, -10px, 0);
+}
+
+.personal-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto var(--spacing-sm);
+    background-color: var(--burdeos-principal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.personal-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.personal-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.personal-fila {
+    display: flex;
+    justify-content: center; /* centra si hay 1 o 2 tarjetas */
+    gap: var(--spacing-lg);
+    flex-wrap: wrap; /* para que se acomode en móvil */
+}
+.equipo-imagen-grupal {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.equipo-imagen-grupal img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    padding: 10px;
+    border: 4px solid #fff; /* borde interior blanco */
+    outline: 6px solid var(--burdeos-principal); /* marco externo */
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    background-color: #fff;
+}
+.subtitulo-equipo {
+    text-align: center;
+    margin: var(--spacing-xl) 0 var(--spacing-md);
+    font-size: var(--font-size-xl);
+    color: var(--blanco);
+    position: relative;
+}
+
+.subtitulo-equipo::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--burdeos-principal);
+    margin: var(--spacing-xs) auto 0;
+    border-radius: 2px;
+}
+/* Galería */
+#galeria {
+    background: linear-gradient(135deg, var(--dorado-marron), var(--arena-calida));
+    color: var(--blanco);
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.galeria-item {
+    height: 200px;
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-base);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    will-change: transform;
+}
+
+.galeria-item:hover,
+.galeria-item:focus {
+    transform: scale(1.05);
+    outline: 2px solid var(--blanco);
+}
+
+.galeria-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.galeria-item:hover::before {
+    left: 100%;
+}
+
+/* Intranet */
+#intranet {
+    background: var(--burdeos-principal);
+    color: var(--blanco);
+}
+
+.intranet-content {
+    text-align: center;
+}
+
+.intranet-buttons {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    margin-top: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.intranet-btn {
+    background: var(--dorado-marron);
+    color: var(--blanco);
+    padding: 1.5rem var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius-lg);
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-decoration: none;
+    display: inline-block;
+    min-width: 200px;
+    will-change: transform;
+}
+
+.intranet-btn:hover,
+.intranet-btn:focus {
+    background: var(--arena-calida);
+    color: var(--negro);
+    transform: translate3d(0, -5px, 0);
+    box-shadow: var(--shadow-xl);
+    outline: 2px solid var(--blanco);
+}
+
+/* Contacto */
+#contacto {
+    background: linear-gradient(135deg, var(--arena-calida), var(--gris-medio));
+    color: var(--negro);
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: var(--spacing-lg);
+}
+
+.contacto-info {
+    text-align: left;
+}
+
+.contacto-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.contacto-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--burdeos-principal);
+    border-radius: var(--border-radius-circle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-md);
+    font-size: var(--font-size-xl);
+    color: var(--blanco);
+}
+
+.contacto-form {
+    background: rgba(255,255,255,0.1);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-xl);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+    transition: border-color var(--transition-base);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--burdeos-principal);
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* Estilos para errores de formulario */
+.form-group input.error,
+.form-group textarea.error {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.field-error {
+    color: #dc3545;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    display: block;
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid #c3e6cb;
+}
+
+/* Animaciones */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.section-title {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--dorado-marron);
+    border-radius: 2px;
+}
+.section-title.burdeo::after {
+    background: var(--burdeos-principal);
+}
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+    scroll-padding: 80px;
+}
+
+/* Mejoras de performance */
+.fade-in {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Mejoras de accesibilidad */
+*:focus {
+    outline: 2px solid var(--dorado-marron);
+    outline-offset: 2px;
+}
+ 
+/* Lazy loading placeholder */
+img.lazy {
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+img:not(.lazy) {
+    opacity: 1;
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+    :root {
+        --font-size-5xl: var(--font-size-3xl);
+        --font-size-4xl: var(--font-size-2xl);
+        --font-size-3xl: var(--font-size-xl);
+    }
+    .logo img {
+        max-height: 40px;
+        max-width: 400px;
+    }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--gris-medio);
+        flex-direction: column;
+        padding: var(--spacing-md) 0;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .slider-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: var(--font-size-xl);
+    }
+
+    .slider-arrow.prev {
+        left: 15px;
+    }
+
+    .slider-arrow.next {
+        right: 15px;
+    }
+
+    .slide-info {
+        top: 15px;
+        right: 15px;
+        font-size: 0.8rem;
+    }
+
+    .historia-grid,
+    .contacto-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .personal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intranet-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    section {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+}
+
+/* Mejoras para movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .slider-wrapper {
+        transition: none;
+    }
+}
+
+/* Mejoras para alto contraste */
+@media (prefers-contrast: high) {
+    :root {
+        --burdeos-principal: #000000;
+        --gris-medio: #000000;
+        --dorado-marron: #000000;
+        --arena-calida: #ffffff;
+        --blanco: #ffffff;
+        --negro: #000000;
+    }
+}
+
+/* Mejoras para modo oscuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --blanco: #1a1a1a;
+        --negro: #ffffff;
+    }
+    
+    body {
+        background: #1a1a1a;
+        color: #ffffff;
+    }
+}</style>   
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+    <header role="banner">
+        <nav role="navigation" aria-label="Navegación principal">
+            <div class="logo">
+                <a href="#inicio">
+                <img src="img/logo.png" alt="Colegio Saint Thomas" style="height: 50px;">
+                </a>
+            </div>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#historia">Historia</a></li>
+                <li><a href="#personal">Personal</a></li>
+                <li><a href="#noticias">Noticias</a></li>
+                <li><a href="#intranet">Recursos</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+    <main id="main" role="main">
+        <!-- Sección Inicio con Slider -->
+        <section id="inicio" aria-labelledby="hero-title">
+            <div class="slider-container">
+                <div class="slider-wrapper" id="sliderWrapper">
+                    <!-- Slide 1 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h2>Bienvenidos a Colegio Saint Thomas Valparaíso</h2>
+                            <p>Formando líderes del mañana con educación de calidad</p>
+                            <a href="#contacto" class="cta-button">¡Únete a Nosotros!</a>
+                        </div>
+                        <div class="slide-info">Campus Principal</div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h2>Excelencia Académica</h2>
+                            <p>Metodologías innovadoras para el aprendizaje del siglo XXI</p>
+                            <a href="#historia" class="cta-button">Conocer Más</a>
+                        </div>
+                        <div class="slide-info">Aulas Modernas</div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h2>Instalaciones de Primera</h2>
+                            <p>Espacios diseñados para potenciar el aprendizaje integral</p>
+                            <a href="#galeria" class="cta-button">Ver Galería</a>
+                        </div>
+                        <div class="slide-info">Laboratorios</div>
+                    </div>
+                    
+                    <!-- Slide 4 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h2>Formación Integral</h2>
+                            <p>Desarrollamos estudiantes competentes y ciudadanos responsables</p>
+                            <a href="#personal" class="cta-button">Nuestro Equipo</a>
+                        </div>
+                        <div class="slide-info">Actividades</div>
+                    </div>
+                    
+                    <!-- Slide 5 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h2>Tecnología Educativa</h2>
+                            <p>Herramientas digitales al servicio del aprendizaje</p>
+                            <a href="#intranet" class="cta-button">Acceder</a>
+                        </div>
+                        <div class="slide-info">Digital</div>
+                    </div>
+                </div>
+                
+                <!-- Controles del Slider -->
+                <button class="slider-arrow prev" id="prevBtn" aria-label="Imagen anterior">&#8249;</button>
+                <button class="slider-arrow next" id="nextBtn" aria-label="Siguiente imagen">&#8250;</button>
+                
+                <!-- Navegación por puntos -->
+                <div class="slider-nav">
+                    <button class="nav-dot active" data-slide="0" aria-label="Ir a la primera imagen"></button>
+                    <button class="nav-dot" data-slide="1" aria-label="Ir a la segunda imagen"></button>
+                    <button class="nav-dot" data-slide="2" aria-label="Ir a la tercera imagen"></button>
+                    <button class="nav-dot" data-slide="3" aria-label="Ir a la cuarta imagen"></button>
+                    <button class="nav-dot" data-slide="4" aria-label="Ir a la quinta imagen"></button>
+                </div>
+            </div>
+        </section>
+        <section id="noticias" class="seccion-noticias" aria-labelledby="noticias-title">
+  <div class="section-content">
+    <h2 id="noticias-title" class="section-title">Noticias</h2>
+    <div class="noticias-grid">
+
+      <!-- Noticia 1 - con botón -->
+      <article class="noticia-card">
+        <img data-src="img/foto11.jpg" class="lazy" alt="Celebración Día del Estudiante">
+        <div class="noticia-contenido">
+          <h3>Celebración Día del Estudiante</h3>
+          <span class="noticia-fecha">10 de junio, 2025</span>
+          <p>Los estudiantes disfrutaron de actividades recreativas, música y premios en una jornada inolvidable.</p>
+          <a href="#" class="leer-mas">Leer más</a>
+        </div>
+      </article>
+
+      <!-- Noticia 2 - solo texto -->
+      <article class="noticia-card">
+        <img data-src="img/foto22.jpg" class="lazy" alt="Taller de Robótica Escolar">
+        <div class="noticia-contenido">
+          <h3>Taller de Robótica Escolar</h3>
+          <span class="noticia-fecha">5 de junio, 2025</span>
+          <p>Se inició el taller de robótica para estudiantes de enseñanza básica y media.</p>
+        </div>
+      </article>
+
+       <!-- Noticia 3 - solo texto -->
+      <article class="noticia-card">
+        <img data-src="img/foto33.jpg" class="lazy" alt="Taller de Robótica Escolar">
+        <div class="noticia-contenido">
+          <h3>Taller de Robótica Escolar</h3>
+          <span class="noticia-fecha">5 de junio, 2025</span>
+          <p>Se inició el taller de robótica para estudiantes de enseñanza básica y media.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+       <section id="historia" aria-labelledby="historia-title">
+  <div class="section-content">
+    <h2 id="historia-title" class="section-title">Nuestra Historia</h2>
+    <div class="historia-grid">
+      <div class="historia-text">
+        <h3>40 años de excelencia educativa</h3>
+            <p>Un profesor normalista, Don Willie Moth Che, realiza el sueño de crear un colegio. Así nace el 5 de septiembre de 1985 Saint Thomas College.El establecimiento en su principio perteneció a ISECH (Instituto Educacional de Chile - Santiago) y posteriormente fue adquirido por la Corporación Educacional Saint Thomas Valparaíso. En sus principios el establecimiento se ubicaba en la calle Hontaneda nº 2796 en Valparaíso, atendiendo un alumnado de 350 niños y jóvenes, posteriormente llegando a 900 alumnos.</p>
+            <p>Actualmente el colegio se encuentra ubicado en Paulino Alfonso Nº 330 del Cº Mesilla en Valparaíso y presta atención a 450 alumnos desde Pre-Kinder a 4º año Medio. Siempre preocupados de otorgar las mejores herramientas para el futuro del alumnado, el establecimiento ofrece una educación completa, basada en normas, valores, conocimientos y practicas (talleres), en un ambiente de camaradería. Incorporando así el aprendizaje en forma gradual y progresiva, a través de metodologías activas y participativas, tanto del alumno como del profesor. La dirección del establecimiento tiene como énfasis especial, el incorporar la tecnología y todos los recursos posibles a la enseñanza, para permitir desarrollar las capacidades y su desenvolvimiento en este mundo que avanza vertiginosamente.</p>
+        <h3>Sellos</h3>
+        <p><strong>"Educando con amor y respeto"</strong></p>
+        <p>Algunos sellos que dan cuenta de nuestro diario trabajo son:</p>
+
+        <p><i><strong>Desarrollos de talentos y habilidades:</strong> Promover en nuestros estudiantes el desarrollo de la integridad de sus talentos, en áreas tan relevantes para la formación personal, como es la práctica permanente de actividades deportivas, artísticas y culturales.</i></p>
+
+        <p><i><strong>Desarrollo del conocimiento:</strong> Estimular por medio de diversas estrategias pedagógicas el aprendizaje significativo para el logro de los objetivos.</i></p>
+
+        <p><i><strong>Ambiente Inclusivo:</strong> Se refiere a las prácticas educativas que reflejan la cultura y las políticas inclusivas del establecimiento. Tiene que ver con asegurar que las actividades en el aula y las actividades extraescolares promuevan la participación de todo el alumnado y tengan en cuenta el conocimiento y la experiencia adquiridos por los estudiantes.</i></p>
+
+        <h3>Visión</h3>
+        <p>Ser un Colegio que lidere una educación innovadora y creativa, que promueva en nuestros alumnos y alumnas aprendizajes significativos, en un clima de sana convivencia, basada en lo valórico y el desarrollo de las habilidades y competencias de cada uno, respetuoso de la diversidad, con capacidad de liderazgo y compromiso ciudadano que posibilite a los estudiantes construir su proyecto de vida en un mundo de constante cambio y florecer en los ámbitos que emprenda.</p>
+        <h3>Misión</h3>
+        <p>Alcanzar una educación de excelencia que privilegie la formación de personas respetuosas, responsables y comprometidas con su proceso de aprendizaje, promoviendo el desarrollo de virtudes humanas y hábitos para una vida sana y saludable, cuidando y respetando el medio ambiente, que les permita desarrollar al máximo sus habilidades y competencias, que los lleven a ser constructores de su proyecto de vida.</p>
+      </div>
+        <div class="historia-carrusel" aria-label="Carrusel con imágenes históricas">
+            <div class="historia-slides">
+                <div class="historia-slide" style="background-image: url('img/h1.jpg');"></div>
+                <div class="historia-slide" style="background-image: url('img/h2.jpg');"></div>
+                <div class="historia-slide" style="background-image: url('img/h3.jpg');"></div>
+            </div>
+        <div class="historia-texto">
+          <h3>1985 - 2025</h3>
+          <p>40 años de trayectoria</p>
+          <p><span role="img" aria-label="Libros">📚</span> Tradición + Innovación</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <!-- Sección Personal -->
+        <section id="personal" aria-labelledby="personal-title">
+            <div class="section-content">
+                <h2 id="personal-title" class="section-title">Nuestro Equipo</h2>
+                <div class="equipo-imagen-grupal">
+                    <img data-src="img/personal/personal.jpg" class="lazy" alt="Fotografía grupal del equipo del colegio">
+                </div>
+                <div class="personal-grupo">
+                    <h3 class="subtitulo-equipo">Dirección</h3>
+                    <div class="personal-fila">
+                        <article class="personal-card fade-in">
+                            <div class="personal-avatar" aria-hidden="true">
+                                <img data-src="img/personal/dire.jpg" class="lazy" alt="Mei-ling Moth">
+                            </div>
+                            <h3>Mei-ling Moth Rubilar</h3>
+                            <p><strong>Directora</strong></p>
+                            <p>Magíster en Gestión de Mejoramiento Escolar con 25 años de experiencia. Docente de Educación Básica.</p>
+                        </article>
+                     </div>
+                    <h3 class="subtitulo-equipo">Equipo administrativo</h3>
+                    <div class="personal-fila">       
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/donteo.jpg" class="lazy" alt="Marcos Oberli">
+                        </div>
+                        <h3>Marcos Oberli Olate</h3>
+                        <p><strong>Asesor Legal</strong></p>
+                        <p>Aporta a la gestión institucional con respaldo en experiencia técnica y administrativa adquirida en Chile y Suiza.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/tiaailan.jpg" class="lazy" alt="Ai-lan Moth">
+                        </div>
+                        <h3>Ai-lan Moth Rubilar</h3>
+                        <p><strong>Jefa Administrativa</strong></p>
+                        <p>Educadora de Párvulos con más de 25 años de experiencia, especializada en gestión escolar y formación docente.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                            <div class="personal-avatar" aria-hidden="true">
+                                <img data-src="img/personal/chantal.jpg" class="lazy" alt="Chantal Oberli">
+                            </div>
+                            <h3>Chantal Oberli Moth</h3>
+                            <p><strong>Diseñadora</strong></p>
+                            <p>Diseñadora con formación internacional. Apoya el área administrativa en la gestión y proyección de la imagen institucional.</p>
+                        </article>
+                         <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/theo.jpg" class="lazy" alt="Theodor Oberli">
+                        </div>
+                        <h3>Theodor Oberli Moth</h3>
+                        <p><strong>Recursos Humanos</strong></p>
+                        <p>Apoya la gestión interna y el bienestar del equipo educativo, con foco en la organización, comunicación y clima laboral.</p>
+                    </article>   
+                    </div>
+                    <h3 class="subtitulo-equipo">UTP</h3>
+                     <div class="personal-fila">  
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/magen.jpg" class="lazy" alt="María Angélica Moth">
+                        </div>
+                        <h3>María Angélica Moth Rubilar</h3>
+                        <p><strong>UTP</strong></p>
+                        <p>Docente de Educación General Básica con Post Título en Orientación, Liderazgo Sistématico, Aprendizaje en red y Administración
+                        Educacional.</p>
+                    </article>
+                     <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/paty.jpg" class="lazy" alt="Patricia Chacón">
+                        </div>
+                        <h3>Patricia Chacón Chacón</h3>
+                        <p><strong>Encargada PAES</strong></p>
+                        <p>Docente de Educación General Básica mención Lenguaje y Comunicación con Post Título en Administración Educacional e Idioma Ingles EGB.</p>
+                    </article>
+                    </div>
+                    <h3 class="subtitulo-equipo">Equipo de Apoyo</h3>
+                     <div class="personal-fila">  
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/martin.jpg" class="lazy" alt="Martin Mingram">
+                        </div>
+                        <h3>Martin Mingram Reyes</h3>
+                        <p><strong>Psicólogo</strong></p>
+                        <p>Psicólogo con experiencia en R&S, convivencia escolar y desarrollo organizacional. Comprometido con el bienestar y el trabajo en equipo.</p>
+                    </article>
+                    </div>
+                     <h3 class="subtitulo-equipo">Inspectoría</h3>
+                    <div class="personal-fila">       
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/rodrigo.jpg" class="lazy" alt="Rodrigo Pinto">
+                        </div>
+                        <h3>Rodrigo Pinto Urra</h3>
+                        <p><strong>Inspector General</strong></p>
+                        <p>Inspector General, con amplia trayectoria en gestión administrativa, contabilidad educacional y apoyo a la organización interna del establecimiento.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/marillac.jpg" class="lazy" alt="Marillac Ortega">
+                        </div>
+                        <h3>Marillac Ortega</h3>
+                        <p><strong>Inspectora</strong></p>
+                        <p>Inspectora con extensa experiencia en el ámbito escolar, comprometida con la convivencia y el orden.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/mauricio.jpg" class="lazy" alt="Mauricio Vásquez">
+                        </div>
+                        <h3>Mauricio Vásquez Gómez</h3>
+                        <p><strong>Inspector</strong></p>
+                        <p>Inspector del Saint Thomas College desde 1993, con amplia experiencia y compromiso con la comunidad escolar.</p>
+                    </article>    
+                </div>
+                <h3 class="subtitulo-equipo">Docentes</h3>
+                    <div class="personal-fila">       
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/manuel.jpg" class="lazy" alt="Manuel Alarcón">
+                        </div>
+                        <h3>Manuel Alarcón Saavedra</h3>
+                        <p><strong>Docente de Historia y Ciencias Sociales</strong></p>
+                        <p>Licenciado en Historia, cuenta con formación en reanimación cardiopulmonar (DEA). Actualmente se desempeña como profesor jefe de 4° Medio.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/paulina.jpg" class="lazy" alt="Paulina Carretero">
+                        </div>
+                        <h3>Paulina Carretero</h3>
+                        <p><strong>Docente de Filosofía</strong></p>
+                        <p>Profesora de Filosofía, Estética y Orientación; encargada de Convivencia Escolar y Mediación. Profesora Jefe de 3° Medio 2025.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/diego.jpg" class="lazy" alt="Diego Mandoza">
+                        </div>
+                        <h3>Diego Mendoza</h3>
+                        <p><strong>Docente de Inglés</strong></p>
+                        <p>Licenciado en Educación. Profesor Jefe de 2° Medio 2025.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/leila.jpg" class="lazy" alt="Leila Antilef">
+                        </div>
+                        <h3>Leila Antilef</h3>
+                        <p><strong>Docente de Ciencias</strong></p>
+                        <p>Profesora de Biología, Química y Física. Licenciada en Educación y Profesora Jefe de 1° Medio 2025..</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/paty.jpg" class="lazy" alt="Patricia Chacón">
+                        </div>
+                        <h3>Patricia Chacón Chacón</h3>
+                        <p><strong>Docente de Educación Básica</strong></p>
+                        <p>Con mención en Lenguaje y Comunicación. Posee post títulos en Administración Educacional e Idioma Inglés EGB. Profesora jefe de 6° y 8° Básico 2025.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/jaime.jpg" class="lazy" alt="Jaime Pulgar">
+                        </div>
+                        <h3>Jaime Pulgar</h3>
+                        <p><strong>Docente de Educación Física</strong></p>
+                        <p>Licenciado en Educación, técnico deportivo y preparador de arqueros. Asesor del Centro de Alumnos y profesor jefe de 7° Básico 2025.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/bessy.jpg" class="lazy" alt="Bessy Vindigni">
+                        </div>
+                        <h3>Bessy Vindigni</h3>
+                        <p><strong>Docente de Educación Básica</strong></p>
+                        <p>Con mención en Lenguaje y Comunicación. Licenciada en Educación. Profesora jefe de 5° Básico 2025.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/mariaeugenia.jpg" class="lazy" alt="María Eugenia Espinoza">
+                        </div>
+                        <h3>María Eugenia Espinoza</h3>
+                        <p><strong>Docente de Educación Básica</strong></p>
+                        <p>Con mención en Computación, licenciada en Educación y magíster en Ambiente de Aprendizaje y Convivencia Escolar. Profesora jefe de 4° Básico 2025.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/ximena.jpg" class="lazy" alt="Ximena Vásquez">
+                        </div>
+                        <h3>Ximena Vásquez Moth</h3>
+                        <p><strong>Docente de Educación Básica</strong></p>
+                        <p>Licenciada en Educación. Profesora jefe de 3° Básico 2025.</p>
+                    </article>
+                     <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/irianna.jpg" class="lazy" alt="Irianna Orellana">
+                        </div>
+                        <h3>Irianna Orellana</h3>
+                        <p><strong>Docente de Educación Básica</strong></p>
+                        <p>Con mención en Lenguaje y Comunicación. Licenciada en Educación. Profesora jefe de 2° Básico 2025.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/constanza.jpg" class="lazy" alt="Constanza Castillo">
+                        </div>
+                        <h3>Constanza Castillo</h3>
+                        <p><strong>Docente de Educación Básica</strong></p>
+                        <p>Licenciada en Educación y psicopedagoga. Profesora jefe de 1° Básico 2025.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/camila.jpg" class="lazy" alt="Camila Pizarro">
+                        </div>
+                        <h3>Camila Pizarro</h3>
+                        <p><strong>Educadora de Párvulos</strong></p>
+                        <p>Magíster en Educación con 25 años de experiencia. Lidera nuestra visión educativa con pasión y dedicación.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/germana.jpg" class="lazy" alt="Germana Fernández">
+                        </div>
+                        <h3>Germana Fernández</h3>
+                        <p><strong>Docente de Educación Física</strong></p>
+                        <p>Profesora de Estado en Educación Física y Salud. Cuenta con curso básico de Primeros Auxilios IST.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/maryann.jpg" class="lazy" alt="Mary-Ann Vaquer">
+                        </div>
+                        <h3>Mary-Ann Vaquer Hernández</h3>
+                        <p><strong>Docente de Lenguaje y Comunicación</strong></p>
+                        <p>Mención en Teatro. Con sólida trayectoria en gestión educativa, SIMCE, PAES y elaboración de proyectos.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/jorge.jpg" class="lazy" alt="Jorge Guerrero">
+                        </div>
+                        <h3>Jorge Guerrero</h3>
+                        <p><strong>Docente de Matemáticas</strong></p>
+                        <p>Licenciado en Educación y con maestría en Educación Ambiental. Parte del Departamento de Matemáticas.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/denise.jpg" class="lazy" alt="Denise Quijada">
+                        </div>
+                        <h3>Denise Quijada</h3>
+                        <p><strong>Docente de Artes</strong></p>
+                        <p>Con mención en Artes Visuales y Licenciada en Artes. </p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/javier.jpg" class="lazy" alt="Javier García">
+                        </div>
+                        <h3>Javier García Medina</h3>
+                        <p><strong>Docente de Música</strong></p>
+                        <p>Licenciado en Música. Amplia experiencia como músico, pianista acompañante y director coral. Destacan sus conocimientos en saxofón, guitarra, percusión y sonido.</p>
+                    </article>                             
+                </div>
+                <h3 class="subtitulo-equipo">Informática</h3>
+                     <div class="personal-fila">  
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/francisco.jpg" class="lazy" alt="Francisco Núñez">
+                        </div>
+                        <h3>Francisco Núñez Céspedes</h3>
+                        <p><strong>Encargado de Informática</strong></p>
+                        <p>Administrador de Redes Computacionales, con curso DEA de reanimación cardiopulmonar y diplomado en promoción de la convivencia escolar.</p>
+                    </article>
+                    </div>
+                 <h3 class="subtitulo-equipo">Asistentes de la Educación</h3>
+                    <div class="personal-fila">       
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/rebeca.jpg" class="lazy" alt="Rebeca Povada">
+                        </div>
+                        <h3>Reveca Povada</h3>
+                        <p><strong>Asistente de Aula</strong></p>
+                        <p>Inspector General, con amplia trayectoria en gestión administrativa, contabilidad educacional y apoyo a la organización interna del establecimiento.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/lorenza.jpg" class="lazy" alt="Lorenza Guerra">
+                        </div>
+                        <h3>Lorenza Guerra</h3>
+                        <p><strong>Auxiliar de Servicio</strong></p>
+                        <p>Inspectora con extensa experiencia en el ámbito escolar, comprometida con la convivencia y el orden.</p>
+                    </article>
+                    <article class="personal-card fade-in">
+                        <div class="personal-avatar" aria-hidden="true">
+                            <img data-src="img/personal/maribel.jpg" class="lazy" alt="Maribel Arellano">
+                        </div>
+                        <h3>Maribel Arellano</h3>
+                        <p><strong>Auxiliar de Servicio</strong></p>
+                        <p>Inspector del Saint Thomas College desde 1993, con amplia experiencia y compromiso con la comunidad escolar.</p>
+                    </article>    
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Galería -->
+        <section id="galeria" aria-labelledby="galeria-title">
+            <div class="section-content">
+                <h2 id="galeria-title" class="section-title burdeo">Galería</h2>
+                <div class="galeria-grid">
+                    <div class="galeria-item fade-in" tabindex="0" role="button" aria-label="Ver instalaciones modernas">
+                        <div><span role="img" aria-label="Edificio escolar">🏫</span> Instalaciones Modernas</div>
+                    </div>
+                    <div class="galeria-item fade-in" tabindex="0" role="button" aria-label="Ver laboratorios equipados">
+                        <div><span role="img" aria-label="Microscopio">🔬</span> Laboratorios Equipados</div>
+                    </div>
+                    <div class="galeria-item fade-in" tabindex="0" role="button" aria-label="Ver biblioteca digital">
+                        <div><span role="img" aria-label="Libros">📚</span> Biblioteca Digital</div>
+                    </div>
+                    <div class="galeria-item fade-in" tabindex="0" role="button" aria-label="Ver talleres creativos">
+                        <div><span role="img" aria-label="Paleta de arte">🎨</span> Talleres Creativos</div>
+                    </div>
+                    <div class="galeria-item fade-in" tabindex="0" role="button" aria-label="Ver deportes y recreación">
+                        <div><span role="img" aria-label="Pelota de fútbol">⚽</span> Deportes y Recreación</div>
+                    </div>
+                    <div class="galeria-item fade-in" tabindex="0" role="button" aria-label="Ver actividades culturales">
+                        <div><span role="img" aria-label="Máscaras de teatro">🎭</span> Actividades Culturales</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Intranet -->
+        <section id="intranet" aria-labelledby="intranet-title">
+            <div class="section-content">
+                <h2 id="intranet-title" class="section-title">Recursos Escolares</h2>
+                <div class="intranet-content">
+                    <p>Accede a todos los recursos digitales de nuestra institución</p>
+                    <div class="intranet-buttons">
+                        <a href="http://www.sencloud.esy.es/login.php?info=DENIED" target="_blank" class="intranet-btn" aria-label="Acceder al sistema de notas">
+                            <span role="img" aria-label="Gráfico">📊</span> Sistema de Notas
+                        </a>
+                        <a href="#" class="intranet-btn" aria-label="Ver calendario académico">
+                            <span role="img" aria-label="Calendario">📅</span> Horarios 2025
+                        </a>
+                        <a href="#" class="intranet-btn" aria-label="Acceder al portal de estudiantes">
+                            <span role="img" aria-label="Estudiante">👨‍🎓</span> Portal Estudiantes
+                        </a>
+                        <a href="#" class="intranet-btn" aria-label="Acceder al portal de docentes">
+                            <span role="img" aria-label="Profesor">👨‍🏫</span> Portal Docentes
+                        </a>
+                        <a href="#" class="intranet-btn" aria-label="Acceder al portal de padres">
+                            <span role="img" aria-label="Familia">👨‍👩‍👧‍👦</span> Portal Padres
+                        </a>
+                        <a href="#" class="intranet-btn" aria-label="Acceder a recursos educativos">
+                            <span role="img" aria-label="Portapapeles">📋</span> Recursos Educativos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto" aria-labelledby="contacto-title">
+            <div class="section-content">
+                <h2 id="contacto-title" class="section-title">Contacto</h2>
+                <div class="contacto-grid">
+                    <div class="contacto-info">
+                        <h3>¿Cómo llegar a nosotros?</h3>
+                        <div class="contacto-item">
+                            <div class="contacto-icon" aria-label="Ubicación">📍</div>
+                            <div>
+                                <h4>Dirección</h4>
+                                <p>Paulino Alfonso 330, Cerro Mesilla, Valparaíso, Chile</p>
+                            </div>
+                        </div>
+                        <div class="contacto-item">
+                            <div class="contacto-icon" aria-label="Teléfono">📞</div>
+                            <div>
+                                <h4>Teléfono</h4>
+                                <p><a href="tel:+56322493703" style="color: inherit;">+56 32 249 3703</a></p>
+                            </div>
+                        </div>
+                        <div class="contacto-item">
+                            <div class="contacto-icon" aria-label="Correo electrónico">✉️</div>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:contacto@sthomasc.cl" style="color: inherit;">contacto@sthomasc.cl</a></p>
+                            </div>
+                        </div>
+                        <div class="contacto-item">
+                            <div class="contacto-icon" aria-label="Horario">🕒</div>
+                            <div>
+                                <h4>Horario de Atención</h4>
+                                <p>Lunes a Viernes: 8:00 - 17:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contacto-form">
+                        <h3>Envíanos un mensaje</h3>
+                        <form aria-label="Formulario de contacto">
+                            <div class="form-group">
+                                <label for="nombre">Nombre completo *</label>
+                                <input type="text" id="nombre" name="nombre" required aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo electrónico *</label>
+                                <input type="email" id="email" name="email" required aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono">
+                            </div>
+                            <div class="form-group">
+                                <label for="mensaje">Mensaje *</label>
+                                <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos cómo podemos ayudarte..." required aria-required="true"></textarea>
+                            </div>
+                            <button type="submit" class="cta-button">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+     // ========================================
+// SLIDER FUNCIONAL
+// ========================================
+
+class SliderManager {
+    constructor() {
+        this.sliderWrapper = document.getElementById('sliderWrapper');
+        this.slides = document.querySelectorAll('.slide');
+        this.prevBtn = document.getElementById('prevBtn');
+        this.nextBtn = document.getElementById('nextBtn');
+        this.navDots = document.querySelectorAll('.nav-dot');
+        
+        this.currentSlide = 0;
+        this.totalSlides = this.slides.length;
+        this.isTransitioning = false;
+        this.autoPlayInterval = null;
+        this.autoPlayDelay = 5000; // 5 segundos
+        
+        this.init();
+    }
+    
+    init() {
+        if (!this.sliderWrapper || this.totalSlides === 0) return;
+        
+        this.setupEventListeners();
+        this.setupKeyboardNavigation();
+        this.setupTouchNavigation();
+        this.startAutoPlay();
+        this.updateSliderPosition(false); // Sin animación inicial
+        
+        // Pausar autoplay cuando el usuario interactúa
+        this.setupAutoPlayPause();
+    }
+    
+    setupEventListeners() {
+        // Botones de navegación
+        this.prevBtn?.addEventListener('click', () => this.prevSlide());
+        this.nextBtn?.addEventListener('click', () => this.nextSlide());
+        
+        // Navegación por puntos
+        this.navDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => this.goToSlide(index));
+        });
+    }
+    
+    setupKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+            // Solo funcionar si el slider está visible
+            if (!this.isSliderInView()) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    this.prevSlide();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    this.nextSlide();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    this.goToSlide(0);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    this.goToSlide(this.totalSlides - 1);
+                    break;
+            }
+        });
+    }
+    
+    setupTouchNavigation() {
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+        
+        this.sliderWrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isDragging = true;
+            this.pauseAutoPlay();
+        }, { passive: true });
+        
+        this.sliderWrapper.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = Math.abs(currentX - startX);
+            const diffY = Math.abs(currentY - startY);
+            
+            // Solo prevenir scroll si el movimiento es más horizontal que vertical
+            if (diffX > diffY && diffX > 10) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        this.sliderWrapper.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            const threshold = 50; // Mínimo de píxeles para considerar el swipe
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    this.nextSlide();
+                } else {
+                    this.prevSlide();
+                }
+            }
+            
+            isDragging = false;
+            this.startAutoPlay();
+        }, { passive: true });
+    }
+    
+    setupAutoPlayPause() {
+        const sliderContainer = document.querySelector('.slider-container');
+        
+        // Pausar en hover
+        sliderContainer?.addEventListener('mouseenter', () => this.pauseAutoPlay());
+        sliderContainer?.addEventListener('mouseleave', () => this.startAutoPlay());
+        
+        // Pausar cuando el usuario interactúa con controles
+        [this.prevBtn, this.nextBtn, ...this.navDots].forEach(element => {
+            element?.addEventListener('click', () => {
+                this.pauseAutoPlay();
+                // Reiniciar autoplay después de un tiempo
+                setTimeout(() => this.startAutoPlay(), 3000);
+            });
+        });
+        
+        // Pausar cuando la pestaña no está visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pauseAutoPlay();
+            } else {
+                this.startAutoPlay();
+            }
+        });
+    }
+    
+    nextSlide() {
+        if (this.isTransitioning) return;
+        
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+        this.updateSliderPosition();
+        this.announceSlideChange();
+    }
+    
+    prevSlide() {
+        if (this.isTransitioning) return;
+        
+        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+        this.updateSliderPosition();
+        this.announceSlideChange();
+    }
+    
+    goToSlide(index) {
+        if (this.isTransitioning || index === this.currentSlide) return;
+        
+        this.currentSlide = index;
+        this.updateSliderPosition();
+        this.announceSlideChange();
+    }
+    
+    updateSliderPosition(animate = true) {
+        if (!this.sliderWrapper) return;
+        
+        this.isTransitioning = animate;
+        
+        // Calcular la posición
+        const translateX = -this.currentSlide * (100 / this.totalSlides);
+        
+        // Aplicar la transformación
+        this.sliderWrapper.style.transform = `translateX(${translateX}%)`;
+        
+        // Actualizar navegación por puntos
+        this.updateNavDots();
+        
+        // Actualizar atributos de accesibilidad
+        this.updateAccessibility();
+        
+        // Remover flag de transición después de la animación
+        if (animate) {
+            setTimeout(() => {
+                this.isTransitioning = false;
+            }, 500); // Debe coincidir con la duración de la transición CSS
+        } else {
+            this.isTransitioning = false;
+        }
+    }
+    
+    updateNavDots() {
+        this.navDots.forEach((dot, index) => {
+            if (index === this.currentSlide) {
+                dot.classList.add('active');
+                dot.setAttribute('aria-current', 'true');
+            } else {
+                dot.classList.remove('active');
+                dot.removeAttribute('aria-current');
+            }
+        });
+    }
+    
+    updateAccessibility() {
+        // Actualizar slides para lectores de pantalla
+        this.slides.forEach((slide, index) => {
+            if (index === this.currentSlide) {
+                slide.setAttribute('aria-hidden', 'false');
+                slide.setAttribute('tabindex', '0');
+            } else {
+                slide.setAttribute('aria-hidden', 'true');
+                slide.setAttribute('tabindex', '-1');
+            }
+        });
+        
+        // Actualizar aria-label de los botones
+        this.prevBtn?.setAttribute('aria-label', 
+            `Ir a la imagen anterior (${this.currentSlide === 0 ? this.totalSlides : this.currentSlide} de ${this.totalSlides})`);
+        this.nextBtn?.setAttribute('aria-label', 
+            `Ir a la siguiente imagen (${this.currentSlide + 2 > this.totalSlides ? 1 : this.currentSlide + 2} de ${this.totalSlides})`);
+    }
+    
+    announceSlideChange() {
+        // Crear anuncio para lectores de pantalla
+        const announcement = document.createElement('div');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.setAttribute('aria-atomic', 'true');
+        announcement.className = 'sr-only';
+        announcement.textContent = `Imagen ${this.currentSlide + 1} de ${this.totalSlides}`;
+        
+        document.body.appendChild(announcement);
+        
+        // Remover el anuncio después de un tiempo
+        setTimeout(() => {
+            document.body.removeChild(announcement);
+        }, 1000);
+    }
+    
+    startAutoPlay() {
+        this.pauseAutoPlay(); // Limpiar cualquier intervalo existente
+        
+        this.autoPlayInterval = setInterval(() => {
+            this.nextSlide();
+        }, this.autoPlayDelay);
+    }
+    
+    pauseAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
+    }
+    
+    isSliderInView() {
+        const sliderRect = this.sliderWrapper?.getBoundingClientRect();
+        if (!sliderRect) return false;
+        
+        return sliderRect.top < window.innerHeight && sliderRect.bottom > 0;
+    }
+    
+    // Método para pausar/reanudar desde el exterior
+    toggle() {
+        if (this.autoPlayInterval) {
+            this.pauseAutoPlay();
+        } else {
+            this.startAutoPlay();
+        }
+    }
+    
+    // Método para ir a un slide específico desde el exterior
+    goTo(index) {
+        if (index >= 0 && index < this.totalSlides) {
+            this.goToSlide(index);
+        }
+    }
+    
+    // Método para obtener información del slider
+    getState() {
+        return {
+            currentSlide: this.currentSlide,
+            totalSlides: this.totalSlides,
+            isPlaying: !!this.autoPlayInterval,
+            isTransitioning: this.isTransitioning
+        };
+    }
+}
+
+// Inicializar el slider cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    // Crear instancia global del slider
+    window.sliderManager = new SliderManager();
+    
+   
+});
+
+// Exponer métodos útiles globalmente para debugging o control externo
+window.sliderControls = {
+    next: () => window.sliderManager?.nextSlide(),
+    prev: () => window.sliderManager?.prevSlide(),
+    goTo: (index) => window.sliderManager?.goTo(index),
+    toggle: () => window.sliderManager?.toggle(),
+    getState: () => window.sliderManager?.getState()
+};
+        // Navegación suave mejorada
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Mejorar foco para accesibilidad
+                    target.focus();
+                }
+            });
+        });
+
+        // Menú móvil mejorado
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.contains('active');
+            
+            if (isOpen) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Abrir menú de navegación');
+            } else {
+                navLinks.classList.add('active');
+                menuToggle.classList.add('active');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                menuToggle.setAttribute('aria-label', 'Cerrar menú de navegación');
+            }
+        });
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Abrir menú de navegación');
+            }
+        });
+
+        // Cerrar menú móvil al presionar Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Abrir menú de navegación');
+                menuToggle.focus();
+            }
+        });
+
+        // Formulario de contacto mejorado
+        const contactForm = document.querySelector('form');
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+
+        // Validación en tiempo real
+        formInputs.forEach(input => {
+            input.addEventListener('blur', validateField);
+            input.addEventListener('input', clearErrors);
+        });
+
+        function validateField(e) {
+            const field = e.target;
+            const value = field.value.trim();
+            
+            // Remover errores previos
+            clearFieldError(field);
+            
+            if (field.hasAttribute('required') && !value) {
+                showFieldError(field, 'Este campo es obligatorio');
+                return false;
+            }
+            
+            if (field.type === 'email' && value && !isValidEmail(value)) {
+                showFieldError(field, 'Ingresa un correo electrónico válido');
+                return false;
+            }
+            
+            if (field.type === 'tel' && value && !isValidPhone(value)) {
+                showFieldError(field, 'Ingresa un número de teléfono válido');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function clearErrors(e) {
+            clearFieldError(e.target);
+        }
+
+        function showFieldError(field, message) {
+            field.classList.add('error');
+            field.setAttribute('aria-invalid', 'true');
+            
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'field-error';
+            errorDiv.textContent = message;
+            errorDiv.id = field.id + '-error';
+            field.setAttribute('aria-describedby', errorDiv.id);
+            
+            field.parentNode.appendChild(errorDiv);
+        }
+
+        function clearFieldError(field) {
+            field.classList.remove('error');
+            field.removeAttribute('aria-invalid');
+            field.removeAttribute('aria-describedby');
+            
+            const errorDiv = field.parentNode.querySelector('.field-error');
+            if (errorDiv) {
+                errorDiv.remove();
+            }
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidPhone(phone) {
+            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{8,}$/;
+            return phoneRegex.test(phone);
+        }
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validar todos los campos
+            let isValid = true;
+            formInputs.forEach(input => {
+                if (!validateField({ target: input })) {
+                    isValid = false;
+                }
+            });
+            
+            if (isValid) {
+                // Simular envío exitoso
+                showSuccessMessage();
+                this.reset();
+                
+                // Limpiar errores
+                formInputs.forEach(input => clearFieldError(input));
+            } else {
+                // Enfocar el primer campo con error
+                const firstError = contactForm.querySelector('.error');
+                if (firstError) {
+                    firstError.focus();
+                }
+            }
+        });
+
+        function showSuccessMessage() {
+            // Crear mensaje de éxito
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.textContent = '¡Gracias por tu mensaje! Te contactaremos pronto.';
+            successDiv.setAttribute('role', 'alert');
+            successDiv.setAttribute('aria-live', 'polite');
+            
+            // Insertar antes del formulario
+            contactForm.parentNode.insertBefore(successDiv, contactForm);
+            
+            // Remover después de 5 segundos
+            setTimeout(() => {
+                successDiv.remove();
+            }, 5000);
+        }
+
+        // Efectos de scroll mejorados
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 100) {
+        header.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1))';
+        header.style.backdropFilter = 'blur(8px)';
+    } else {
+        header.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1))';
+        header.style.backdropFilter = 'blur(6px)';
+    }
+});
+
+        // Animaciones al hacer scroll optimizadas
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Desenganchar el observer para mejor performance
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos con animación
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navegación por teclado para elementos interactivos
+        document.querySelectorAll('.galeria-item').forEach(item => {
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    item.click();
+                }
+            });
+        });
+
+        // Mejorar accesibilidad del formulario
+        const requiredFields = document.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+            // Añadir asterisco visual para usuarios que no usan lectores de pantalla
+            const label = document.querySelector(`label[for="${field.id}"]`);
+            if (label && !label.textContent.includes('*')) {
+                label.innerHTML = label.innerHTML.replace(/\*$/, '') + ' *';
+            }
+        });
+
+        // Detectar si el usuario prefiere movimiento reducido
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (prefersReducedMotion) {
+            // Desactivar animaciones para usuarios que prefieren movimiento reducido
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+            document.documentElement.style.setProperty('--transition-duration', '0s');
+        }
+
+        // Lazy loading para mejores de rendimiento (si hubiera imágenes)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        
+        // Manejo de errores de JavaScript
+        window.addEventListener('error', (e) => {
+            console.error('Error en el sitio web:', e.error);
+            // En producción, aquí se podría enviar el error a un servicio de monitoreo
+        });
+
+        // Service Worker para cache (opcional, para mejores de performance)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Descomentizar en producción con un service worker implementado
+                // navigator.serviceWorker.register('/sw.js')
+                //     .then(registration => console.log('SW registered'))
+                //     .catch(error => console.log('SW registration failed'));
+            });
+        }
+  </script>      
+</body>
+</html>
