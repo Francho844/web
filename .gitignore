@@ -1,0 +1,12 @@
+# Archivos temporales del sistema
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Dependencias de Node (si se agregaran en el futuro)
+node_modules/
+
+# Archivos de entorno
+.env
